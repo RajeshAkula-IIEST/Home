@@ -10,7 +10,7 @@ import {
   GraduationCap,
 } from "lucide-react";
 
-import Typewriter from "./Typewriter";
+import Typewriter from "@/components/ui/Typewriter";
 
 export default function Hero() {
   return (

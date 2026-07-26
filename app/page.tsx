@@ -1,11 +1,11 @@
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Stats from "@/components/Stats";
-import Research from "@/components/Research";
-import Footer from "@/components/Footer";
-import ScrollProgress from "@/components/ScrollProgress";
-import ScrollTop from "@/components/ScrollTop";
+import Navbar from "@/components/layout/Navbar";
+import Hero from "@/components/home/Hero";
+import About from "@/components/home/About";
+import Stats from "@/components/home/Stats";
+import Research from "@/components/home/Research";
+import Footer from "@/components/layout/Footer";
+import ScrollProgress from "@/components/shared/ScrollProgress";
+import ScrollTop from "@/components/shared/ScrollTop";
 
 export default function HomePage() {
   return (
