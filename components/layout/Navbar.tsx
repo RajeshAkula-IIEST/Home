@@ -3,11 +3,6 @@
 import { Menu, X, Download } from "lucide-react";
 import { useState } from "react";
 
-type Props = {
-  activePage: string;
-  setActivePage: (page: string) => void;
-};
-
 const links = [
   { label: "Home", page: "home" },
   { label: "About", page: "about" },
@@ -18,11 +13,10 @@ const links = [
   { label: "Contact", page: "contact" },
 ];
 
-export default function Navbar({
-  activePage,
-  setActivePage,
-}: Props) {
+export default function Navbar() {
+  const [activePage, setActivePage] = useState("home");
   const [mobileOpen, setMobileOpen] = useState(false);
+
 
   const NavButton = ({
     label,
@@ -33,9 +27,15 @@ export default function Navbar({
   }) => (
     <button
       onClick={() => {
-        setActivePage(page);
-        setMobileOpen(false);
-      }}
+  setActivePage(page);
+
+  document.getElementById(page)?.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+
+  setMobileOpen(false);
+}}
       className={`relative transition-all duration-300 ${
         activePage === page
           ? "text-sky-700 font-semibold"
@@ -57,7 +57,13 @@ export default function Navbar({
         {/* Logo */}
 
         <button
-          onClick={() => setActivePage("home")}
+          onClick={() => {
+  setActivePage("home");
+
+  document.getElementById("home")?.scrollIntoView({
+    behavior: "smooth",
+  });
+}}
           className="flex items-center gap-3"
         >
           <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-700 text-lg font-bold text-white">
