@@ -32,9 +32,9 @@ export default function PublicationsPage() {
   }, [category]);
 
   // Available years for the selected category (latest first)
-  const years = Array.from(
-    new Set<number>(data.map((p) => p.year))
-  ).sort((a, b) => b - a);
+ const years = Array.from(
+  new Set(data.map((p) => p.year))
+).sort((a, b) => b - a);
 
   // Publications for the selected year
   const papers = data.filter((p) => p.year === year);
