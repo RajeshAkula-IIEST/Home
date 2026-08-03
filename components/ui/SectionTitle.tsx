@@ -1,41 +1,36 @@
 interface Props {
-
-    title: string;
-
-    subtitle?: string;
-
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  align?: "left" | "center";
 }
 
 export default function SectionTitle({
-
-    title,
-
-    subtitle,
-
+  eyebrow,
+  title,
+  subtitle,
+  align = "left",
 }: Props) {
+  const alignment =
+    align === "center" ? "text-center mx-auto" : "text-left";
 
-    return (
+  return (
+    <div className={`max-w-3xl ${alignment}`}>
+      {eyebrow && (
+        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-blue-600">
+          {eyebrow}
+        </p>
+      )}
 
-        <div className="text-center mb-16">
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900">
+        {title}
+      </h2>
 
-            <h2 className="text-5xl font-bold">
-
-                {title}
-
-            </h2>
-
-            {subtitle && (
-
-                <p className="mt-5 text-lg text-gray-500">
-
-                    {subtitle}
-
-                </p>
-
-            )}
-
-        </div>
-
-    );
-
+      {subtitle && (
+        <p className="mt-5 text-base md:text-lg leading-8 text-slate-600">
+          {subtitle}
+        </p>
+      )}
+    </div>
+  );
 }

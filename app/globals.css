@@ -2,6 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
+/* -------------------------------------------------- */
+/* GOOGLE FONT */
+/* -------------------------------------------------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* -------------------------------------------------- */
+
+:root{
+
+--primary:#0F172A;
+
+--secondary:#334155;
+
+--accent:#2563EB;
+
+--accent-light:#60A5FA;
+
+--success:#14B8A6;
+
+--background:#FFFFFF;
+
+--surface:#F8FAFC;
+
+--border:#E2E8F0;
+
+--text:#0F172A;
+
+--text-light:#64748B;
+
+--shadow:0 20px 60px rgba(15,23,42,.08);
+
+--radius:22px;
+
+}
+
+/* -------------------------------------------------- */
+
+*{
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
+
+scroll-behavior:smooth;
+
+}
+
+/* -------------------------------------------------- */
+
 html{
 
 scroll-behavior:smooth;
@@ -10,77 +62,236 @@ scroll-behavior:smooth;
 
 body{
 
-font-family:Inter,sans-serif;
+font-family:'Inter',sans-serif;
 
-background:#F8FAFC;
+background:var(--background);
 
-color:#222;
+color:var(--text);
 
 overflow-x:hidden;
 
 }
 
-h1,h2,h3,h4,h5,h6{
+/* -------------------------------------------------- */
 
-font-family:Poppins,sans-serif;
+section{
 
-}
-
-.gradient{
-
-background:linear-gradient(
-135deg,
-#0B2447,
-#19376D,
-#2D74DA);
+padding:0px 0;
 
 }
 
-.glass{
+/* -------------------------------------------------- */
 
-background:rgba(255,255,255,.12);
+.container{
 
-backdrop-filter:blur(18px);
-
-border:1px solid rgba(255,255,255,.2);
-
-}
-
-.section{
-
-padding:120px 0;
-
-}
-
-.container-custom{
-
-max-width:1280px;
+width:min(1280px,92%);
 
 margin:auto;
 
-padding-left:24px;
+}
 
-padding-right:24px;
+/* -------------------------------------------------- */
+
+.title{
+
+font-size:3rem;
+
+font-weight:800;
+
+line-height:1.1;
+
+color:var(--primary);
 
 }
 
-.text-gradient{
+.subtitle{
 
-background:linear-gradient(
-90deg,
-#0B2447,
-#2D74DA);
+font-size:1.1rem;
 
--webkit-background-clip:text;
+color:var(--text-light);
 
--webkit-text-fill-color:transparent;
+margin-top:18px;
+
+line-height:1.8;
+
+max-width:700px;
 
 }
 
-.shadow-soft{
+/* -------------------------------------------------- */
 
-box-shadow:
+.card{
 
-0 10px 30px rgba(0,0,0,.08);
+background:white;
+
+border-radius:var(--radius);
+
+box-shadow:var(--shadow);
+
+padding:35px;
+
+transition:.35s;
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+
+}
+
+/* -------------------------------------------------- */
+
+.btn{
+
+display:inline-flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:12px;
+
+padding:15px 28px;
+
+border-radius:999px;
+
+font-weight:600;
+
+text-decoration:none;
+
+transition:.3s;
+
+cursor:pointer;
+
+}
+
+.btn-primary{
+
+background:var(--accent);
+
+color:white;
+
+}
+
+.btn-primary:hover{
+
+transform:translateY(-3px);
+
+box-shadow:0 18px 35px rgba(37,99,235,.25);
+
+}
+
+.btn-secondary{
+
+border:1px solid var(--border);
+
+color:var(--primary);
+
+background:white;
+
+}
+
+.btn-secondary:hover{
+
+background:var(--surface);
+
+}
+
+/* -------------------------------------------------- */
+
+img{
+
+max-width:100%;
+
+display:block;
+
+}
+
+/* -------------------------------------------------- */
+
+::selection{
+
+background:#2563EB;
+
+color:white;
+
+}
+
+/* -------------------------------------------------- */
+
+::-webkit-scrollbar{
+
+width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#CBD5E1;
+
+border-radius:50px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+background:#94A3B8;
+
+}
+
+/* ---------- Research Recognition Auto Scroll ---------- */
+
+.recognition-scroll {
+    height: 430px;
+    overflow: hidden;
+    position: relative;
+}
+
+.recognition-track {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    animation: recognitionScroll 22s linear infinite;
+}
+
+.recognition-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes recognitionScroll {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-50%);
+    }
+}
+
+.contact-scroll {
+  overflow: hidden;
+  position: relative;
+}
+
+.contact-track {
+  display: flex;
+  width: max-content;
+  animation: contactScroll 30s linear infinite;
+  gap: 24px;
+}
+
+.contact-scroll:hover .contact-track {
+  animation-play-state: paused;
+}
+
+@keyframes contactScroll {
+
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 
 }
