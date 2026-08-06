@@ -3,6 +3,11 @@
 import { Menu, X, Download } from "lucide-react";
 import { useState } from "react";
 
+type Props = {
+  activePage: string;
+  setActivePage: React.Dispatch<React.SetStateAction<string>>;
+};
+
 const links = [
   { label: "Home", page: "home" },
   { label: "About", page: "about" },
@@ -13,10 +18,11 @@ const links = [
   { label: "Contact", page: "contact" },
 ];
 
-export default function Navbar() {
-  const [activePage, setActivePage] = useState("home");
+export default function Navbar({
+  activePage,
+  setActivePage,
+}: Props) {
   const [mobileOpen, setMobileOpen] = useState(false);
-
 
   const NavButton = ({
     label,
@@ -27,18 +33,12 @@ export default function Navbar() {
   }) => (
     <button
       onClick={() => {
-  setActivePage(page);
-
-  document.getElementById(page)?.scrollIntoView({
-    behavior: "smooth",
-    block: "start",
-  });
-
-  setMobileOpen(false);
-}}
+        setActivePage(page);
+        setMobileOpen(false);
+      }}
       className={`relative transition-all duration-300 ${
         activePage === page
-          ? "text-sky-700 font-semibold"
+          ? "font-semibold text-sky-700"
           : "text-slate-600 hover:text-sky-700"
       }`}
     >
@@ -54,23 +54,15 @@ export default function Navbar() {
     <header className="border-b border-slate-200 bg-white">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
 
-        {/* Logo */}
-
         <button
-          onClick={() => {
-  setActivePage("home");
-
-  document.getElementById("home")?.scrollIntoView({
-    behavior: "smooth",
-  });
-}}
+          onClick={() => setActivePage("home")}
           className="flex items-center gap-3"
         >
           <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-700 text-lg font-bold text-white">
             RA
           </div>
 
-          <div className="hidden sm:block text-left">
+          <div className="hidden text-left sm:block">
             <h1 className="text-lg font-bold text-slate-900">
               Dr. Rajesh Akula
             </h1>
@@ -80,8 +72,6 @@ export default function Navbar() {
             </p>
           </div>
         </button>
-
-        {/* Desktop Menu */}
 
         <nav className="hidden items-center gap-8 lg:flex">
           {links.map((item) => (
@@ -102,8 +92,6 @@ export default function Navbar() {
           </a>
         </nav>
 
-        {/* Mobile */}
-
         <button
           className="lg:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -112,11 +100,9 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Drawer */}
-
       {mobileOpen && (
         <div className="border-t border-slate-200 bg-white lg:hidden">
-          <div className="flex flex-col p-6 space-y-4">
+          <div className="flex flex-col space-y-4 p-6">
             {links.map((item) => (
               <NavButton
                 key={item.page}

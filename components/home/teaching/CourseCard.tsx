@@ -17,9 +17,10 @@ interface Props {
   code: string;
   title: string;
   semester: string;
-  status: string;
   description: string;
-  portals: Portal[];
+
+  status?: string;
+  portals?: Portal[];
 }
 
 export default function CourseCard({
@@ -61,15 +62,17 @@ export default function CourseCard({
 
         </div>
 
-        <span
-          className={`rounded-full px-4 py-2 text-sm font-semibold ${
-            status === "Active"
-              ? "bg-emerald-100 text-emerald-700"
-              : "bg-slate-100 text-slate-600"
-          }`}
-        >
-          {status}
-        </span>
+        {status && (
+  <span
+    className={`rounded-full px-4 py-2 text-sm font-semibold ${
+      status === "Active"
+        ? "bg-emerald-100 text-emerald-700"
+        : "bg-slate-100 text-slate-600"
+    }`}
+  >
+    {status}
+  </span>
+)}
 
       </div>
 
@@ -91,7 +94,7 @@ export default function CourseCard({
 
       {/* Student Portal */}
 
-      {status === "Active" && portals.length > 0 && (
+      {status === "Active" && portals && portals.length > 0 && (
 
         <>
 
@@ -174,7 +177,7 @@ export default function CourseCard({
 
       )}
 
-      {status !== "Active" && (
+      {status && status !== "Active" && (
 
         <div className="mt-8 rounded-2xl bg-slate-50 p-6 text-slate-500">
           This course is archived. Teaching materials and records are retained

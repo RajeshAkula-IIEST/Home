@@ -3,27 +3,27 @@ import { ExternalLink } from "lucide-react";
 type Props = {
   title: string;
   authors: string;
-  year: number;
+  year?: number;
 
   journal?: string;
   conference?: string;
   patentOffice?: string;
 
   doi?: string;
+  url?: string;
   location?: string;
-  patentNumber?: string;
 };
 
 export default function PublicationItem({
   title,
-  authors,
-  year,
   journal,
   conference,
   patentOffice,
+  authors,
   doi,
+  url,
   location,
-  patentNumber,
+  year,
 }: Props) {
   const venue = journal || conference || patentOffice;
 
@@ -38,9 +38,11 @@ export default function PublicationItem({
           </span>
         )}
 
-        <span className="text-sm font-medium text-slate-500">
-          {year}
-        </span>
+        {year && (
+          <span className="text-sm font-medium text-slate-500">
+            {year}
+          </span>
+        )}
 
       </div>
 
@@ -52,28 +54,19 @@ export default function PublicationItem({
         {authors}
       </p>
 
-      {/* Conference location */}
       {location && (
         <p className="mt-2 text-sm text-slate-500">
           📍 {location}
         </p>
       )}
 
-      {/* Patent number */}
-      {patentNumber && (
-        <p className="mt-2 text-sm text-slate-500">
-          Patent No.: {patentNumber}
-        </p>
-      )}
-
-      {/* DOI only for journals/conferences */}
-      {doi && (
+      {(doi || url) && (
         <div className="mt-5">
           <a
-            href={doi}
+            href={doi || url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 font-medium text-blue-600 hover:text-blue-800"
+            className="inline-flex items-center gap-2 font-medium text-blue-600 transition hover:text-blue-800"
           >
             View Publication
             <ExternalLink size={16} />

@@ -5,7 +5,6 @@ import { useMemo, useState } from "react";
 import Section from "@/components/ui/Section";
 
 import PublicationStats from "./PublicationStats";
-import PublicationTabs from "./PublicationTabs";
 import YearButtons from "./YearButtons";
 import PublicationPanel from "./PublicationPanel";
 
@@ -13,50 +12,67 @@ import { journalPublications } from "@/data/journalPublications";
 import { conferencePublications } from "@/data/conferencePublications";
 import { patents } from "@/data/patents";
 
+type Publication = {
+  year: number;
+  title: string;
+  authors: string;
+
+  journal?: string;
+  conference?: string;
+  patentOffice?: string;
+
+  doi?: string;
+  url?: string;
+  location?: string;
+};
+
 export default function PublicationsPage() {
   const [category, setCategory] = useState("Journal");
   const [year, setYear] = useState(2025);
 
-  // Returns the data corresponding to the selected category
-  const data = useMemo(() => {
+  // Data corresponding to selected category
+  const data: Publication[] = useMemo(() => {
     switch (category) {
       case "Conference":
-        return conferencePublications;
+        return conferencePublications as Publication[];
 
       case "Patent":
-        return patents;
+        return patents as Publication[];
 
       default:
-        return journalPublications;
+        return journalPublications as Publication[];
     }
   }, [category]);
 
-  // Available years for the selected category (latest first)
- const years = Array.from(
-  new Set(data.map((p) => p.year))
-).sort((a, b) => b - a);
+  // Available years (latest first)
+  const years = Array.from(
+    new Set(data.map((p) => p.year))
+  ).sort((a, b) => b - a);
 
-  // Publications for the selected year
-  const papers = data.filter((p) => p.year === year);
+  // Publications of selected year
+  const papers: Publication[] = data.filter(
+    (p) => p.year === year
+  );
 
-  // Automatically select the latest year whenever the category changes
   const changeCategory = (newCategory: string) => {
-    let source;
+    let source: Publication[];
 
     switch (newCategory) {
       case "Conference":
-        source = conferencePublications;
+        source = conferencePublications as Publication[];
         break;
 
       case "Patent":
-        source = patents;
+        source = patents as Publication[];
         break;
 
       default:
-        source = journalPublications;
+        source = journalPublications as Publication[];
     }
 
-    const latestYear = Math.max(...source.map((p) => p.year));
+    const latestYear = Math.max(
+      ...source.map((p) => p.year)
+    );
 
     setCategory(newCategory);
     setYear(latestYear);
@@ -64,12 +80,11 @@ export default function PublicationsPage() {
 
   return (
     <Section id="publications">
-
       <div className="mt-5">
         <PublicationStats
-        value={category}
-        onChange={changeCategory}
-/>
+          value={category}
+          onChange={changeCategory}
+        />
       </div>
 
       {years.length > 1 && (
@@ -85,7 +100,6 @@ export default function PublicationsPage() {
       <div className="mt-8">
         <PublicationPanel papers={papers} />
       </div>
-
     </Section>
   );
 }

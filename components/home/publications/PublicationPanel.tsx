@@ -3,11 +3,17 @@
 import PublicationItem from "./PublicationItem";
 
 type Publication = {
-  title: string;
-  journal: string;
-  authors: string;
-  doi: string;
   year: number;
+  title: string;
+  authors: string;
+
+  journal?: string;
+  conference?: string;
+  patentOffice?: string;
+
+  doi?: string;
+  url?: string;
+  location?: string;
 };
 
 type Props = {
@@ -17,7 +23,6 @@ type Props = {
 export default function PublicationPanel({ papers }: Props) {
   return (
     <div className="mt-8 rounded-3xl border border-slate-200 bg-white shadow-sm">
-
       <div className="max-h-[460px] overflow-y-auto">
 
         {papers.length === 0 ? (
@@ -36,7 +41,6 @@ export default function PublicationPanel({ papers }: Props) {
         )}
 
       </div>
-
     </div>
   );
 }
