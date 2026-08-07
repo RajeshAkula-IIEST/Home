@@ -4,7 +4,7 @@ import HeroStats from "./HeroStats";
 export default function Hero() {
   return (
     <section className="bg-gradient-to-b from-white via-slate-50 to-white">
-      <div className="mx-auto max-w-5xl px-5 py-0">
+      <div className="mx-auto max-w-5xl px-5 py-8">
 
         {/* ===================================================== */}
         {/* TOP */}
