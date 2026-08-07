@@ -1,7 +1,7 @@
 "use client";
 
 import { Menu, X, Download } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type Props = {
   activePage: string;
@@ -23,6 +23,17 @@ export default function Navbar({
   setActivePage,
 }: Props) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  useEffect(() => {
+  if (mobileOpen) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
+
+  return () => {
+    document.body.style.overflow = "auto";
+  };
+}, [mobileOpen]);
 
   const NavButton = ({
     label,
@@ -36,10 +47,10 @@ export default function Navbar({
         setActivePage(page);
         setMobileOpen(false);
       }}
-      className={`relative transition-all duration-300 ${
+      className={`relative w-full rounded-xl px-4 py-4 text-left transition-all duration-300 ${
         activePage === page
-          ? "font-semibold text-sky-700"
-          : "text-slate-600 hover:text-sky-700"
+          ? "bg-sky-100 font-semibold text-sky-700"
+          : "text-slate-600 hover:bg-sky-50 hover:text-sky-700"
       }`}
     >
       {label}
@@ -51,19 +62,19 @@ export default function Navbar({
   );
 
   return (
-    <header className="border-b border-slate-200 bg-white">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur-md">
+      <div className="mx-auto flex h-16 md:h-20 max-w-7xl items-center justify-between px-6">
 
         <button
           onClick={() => setActivePage("home")}
           className="flex items-center gap-3"
         >
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-700 text-lg font-bold text-white">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-sky-700 text-lg font-bold text-white">
             RA
           </div>
 
           <div className="hidden text-left sm:block">
-            <h1 className="text-lg font-bold text-slate-900">
+            <h1 className="text-base md:text-lg font-bold text-slate-900">
               Dr. Rajesh Akula
             </h1>
 
@@ -93,7 +104,7 @@ export default function Navbar({
         </nav>
 
         <button
-          className="lg:hidden"
+          className="rounded-lg p-2 transition hover:bg-slate-100 lg:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
           {mobileOpen ? <X size={28} /> : <Menu size={28} />}
@@ -101,8 +112,8 @@ export default function Navbar({
       </div>
 
       {mobileOpen && (
-        <div className="border-t border-slate-200 bg-white lg:hidden">
-          <div className="flex flex-col space-y-4 p-6">
+  <div className="lg:hidden border-t border-slate-200 bg-white shadow-xl">
+          <div className="flex flex-col gap-2 p-6">
             {links.map((item) => (
               <NavButton
                 key={item.page}
@@ -114,7 +125,7 @@ export default function Navbar({
               href="/Rajesh_Akula_CV.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 rounded-xl bg-sky-700 px-4 py-3 text-center text-white"
+              className="mt-4 rounded-xl bg-sky-700 px-5 py-4 text-center font-medium text-white transition hover:bg-sky-800"
             >
               Download CV
             </a>
