@@ -15,7 +15,7 @@ export default function Hero() {
           {/* LEFT */}
 
           <div>
-            <h1 className="text-5xl font-black tracking-tight text-slate-900">
+            <h1 className="text-4xl font-black tracking-tight text-slate-900">
               Dr. Rajesh Akula
             </h1>
 
