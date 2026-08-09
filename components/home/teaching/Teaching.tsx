@@ -87,7 +87,7 @@ export default function Teaching() {
 
         {/* Main Layout */}
 
-        <div className="mt-3 grid gap-6 lg:grid-cols-[250px_1fr]">
+        <div className="mt-3 grid min-w-0 gap-6 lg:grid-cols-[250px_minmax(0,1fr)]">
 
           <CourseList
             courses={filteredCourses}
