@@ -15,32 +15,40 @@ export default function CourseList({
   onSelect,
 }: Props) {
   return (
-    <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm">
+    <div className="w-full">
 
-      <h3 className="mb-4 text-xl font-bold text-slate-900">
+      {/* ===================================================== */}
+      {/* COURSES HEADING */}
+      {/* ===================================================== */}
+
+      <h3 className="mb-3 text-lg font-bold text-slate-900 sm:mb-4 sm:text-xl">
         Courses
       </h3>
 
-      <div className="space-y-3">
+      {/* ===================================================== */}
+      {/* COURSE LIST */}
+      {/* ===================================================== */}
+
+      <div className="space-y-2 sm:space-y-3">
 
         {courses.map((course) => {
-
           const active = course.code === selected;
 
           return (
-
             <button
               key={course.code}
+              type="button"
               onClick={() => onSelect(course.code)}
               className={`
                 group
                 w-full
                 rounded-2xl
                 border
-                p-4
+                p-3
                 text-left
                 transition-all
-                duration-300
+                duration-200
+                sm:p-4
 
                 ${
                   active
@@ -50,20 +58,25 @@ export default function CourseList({
               `}
             >
 
-              <div className="flex items-start justify-between">
+              <div className="flex items-start justify-between gap-2">
 
-                <div className="flex-1">
+                <div className="min-w-0 flex-1">
 
-                  <div className="flex items-center gap-3">
+                  {/* Course code + semester */}
+
+                  <div className="flex items-center gap-2.5 sm:gap-3">
 
                     <div
                       className={`
                         flex
-                        h-9
-                        w-9
+                        h-8
+                        w-8
+                        shrink-0
                         items-center
                         justify-center
                         rounded-lg
+                        sm:h-9
+                        sm:w-9
 
                         ${
                           active
@@ -72,16 +85,16 @@ export default function CourseList({
                         }
                       `}
                     >
-                      <BookOpen size={16} />
+                      <BookOpen size={15} />
                     </div>
 
-                    <div>
+                    <div className="min-w-0">
 
-                      <h4 className="text-base font-bold text-slate-900">
+                      <h4 className="text-sm font-bold text-slate-900 sm:text-base">
                         {course.code}
                       </h4>
 
-                      <p className="text-xs text-slate-500">
+                      <p className="text-[11px] text-slate-500 sm:text-xs">
                         {course.semester}
                       </p>
 
@@ -89,17 +102,21 @@ export default function CourseList({
 
                   </div>
 
-                  <p className="mt-3 text-sm leading-6 text-slate-600">
+                  {/* Course title */}
+
+                  <p className="mt-2 text-sm leading-5 text-slate-600 sm:mt-3 sm:leading-6">
                     {course.title}
                   </p>
 
                 </div>
 
+                {/* Arrow */}
+
                 <ChevronRight
-                  size={18}
+                  size={17}
                   className={`
-                    ml-3
                     mt-1
+                    shrink-0
                     transition-all
 
                     ${
@@ -113,7 +130,6 @@ export default function CourseList({
               </div>
 
             </button>
-
           );
         })}
 

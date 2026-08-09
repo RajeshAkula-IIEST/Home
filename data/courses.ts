@@ -1,23 +1,13 @@
 export interface Course {
-
   code: string;
-
   title: string;
-
   semester: string;
-
   credits: number;
-
   students: number;
-
   teachingHours: number;
-
   current: boolean;
-
   description: string;
-
   studentPortal: string;
-
   courseContent: string;
 }
 
@@ -45,7 +35,7 @@ export const courses: Course[] = [
       "https://me4127-2026.github.io/login/login.html",
 
     courseContent:
-      "/coursecontents/ME4127.pdf"
+      "/coursecontents/ME4127.pdf",
   },
 
   {
@@ -70,7 +60,32 @@ export const courses: Course[] = [
       "https://me4261-2026.github.io/login/login.html",
 
     courseContent:
-      "/coursecontents/ME4261.pdf"
-  }
+      "/coursecontents/ME4261.pdf",
+  },
+
+  {
+    code: "ME3273",
+
+    title: "Seminar & Group Discussion",
+
+    semester: "Odd",
+
+    credits: 3,
+
+    students: 46,
+
+    teachingHours: 36,
+
+    current: false,
+
+    description:
+      "Seminar and group discussion course focused on developing students' communication, presentation, discussion and professional skills.",
+
+    studentPortal:
+      "https://me3273dy2026.github.io/login",
+
+    courseContent:
+      "",
+  },
 
 ];
