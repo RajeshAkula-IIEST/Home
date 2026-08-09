@@ -1,37 +1,53 @@
-import Link from "next/link";
-import {
-  Github,
-  Linkedin,
-  GraduationCap,
-  Mail,
-} from "lucide-react";
+"use client";
+
+import { Eye } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export default function Footer() {
+  const [visits, setVisits] = useState<number | null>(null);
+
+  useEffect(() => {
+    const getVisitorCount = async () => {
+      try {
+        const response = await fetch(
+          "https://counterapi.com/api/home-adgo.vercel.app/view/portfolio"
+        );
+
+        if (!response.ok) {
+          throw new Error("Unable to load visitor count");
+        }
+
+        const data = await response.json();
+        setVisits(data.value);
+      } catch (error) {
+        console.error("Visitor counter error:", error);
+      }
+    };
+
+    getVisitorCount();
+  }, []);
+
   return (
     <footer className="border-t border-slate-200 bg-white">
-      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6">
+      <div className="mx-auto flex min-h-[52px] max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8">
 
+        {/* Copyright */}
         <p className="text-sm text-slate-500">
           © {new Date().getFullYear()} Dr. Rajesh Akula
         </p>
 
-        <div className="flex items-center gap-5">
+        {/* Visitor Counter */}
+        <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 shadow-sm">
 
-          <Link href="mailto:rajesh.akula@iiests.ac.in">
-            <Mail className="h-5 w-5 hover:text-sky-700" />
-          </Link>
+          <Eye className="h-4 w-4 text-sky-700" />
 
-          <Link href="#">
-            <GraduationCap className="h-5 w-5 hover:text-sky-700" />
-          </Link>
+          <span className="text-sm font-medium text-slate-500">
+            Visitors
+          </span>
 
-          <Link href="#">
-            <Linkedin className="h-5 w-5 hover:text-sky-700" />
-          </Link>
-
-          <Link href="#">
-            <Github className="h-5 w-5 hover:text-sky-700" />
-          </Link>
+          <span className="text-sm font-bold text-slate-900">
+            {visits !== null ? visits.toLocaleString() : "—"}
+          </span>
 
         </div>
 
