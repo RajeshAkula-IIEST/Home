@@ -160,18 +160,18 @@ export default function Navbar({
 
         {/* Navigation links */}
 
-        <nav className="flex flex-col">
+        <nav className="flex flex-col items-start">
 
           {links.map((item) => (
             <button
               key={item.page}
               type="button"
               onClick={() => handleNavigation(item.page)}
-              className={`w-full px-3 py-3 text-left text-base transition ${
-                activePage === item.page
-                  ? "font-semibold text-sky-700"
-                  : "text-slate-700 hover:text-sky-700"
-              }`}
+              className={`inline-flex w-fit min-w-[120px] items-center rounded-xl px-4 py-3 text-left text-base transition ${
+  activePage === item.page
+    ? "bg-sky-100 font-semibold text-sky-700"
+    : "text-slate-700 hover:bg-sky-50 hover:text-sky-700"
+}`}
             >
               <span className="flex items-center gap-3">
                 {activePage === item.page && (
