@@ -22,10 +22,9 @@ export default function PublicationStats({
       label: "Journal Publications",
       shortLabel: "Journals",
       icon: BookOpen,
-      gradient: "from-blue-50 via-white to-blue-100",
-      border: "border-t-blue-600",
-      ring: "ring-blue-300",
-      text: "text-blue-700",
+      active: "bg-blue-600 text-white border-blue-600",
+      inactive:
+        "bg-white text-blue-700 border-slate-200 hover:border-blue-300 hover:bg-blue-50",
     },
     {
       category: "Conference",
@@ -33,10 +32,9 @@ export default function PublicationStats({
       label: "Conference Papers",
       shortLabel: "Conferences",
       icon: Presentation,
-      gradient: "from-emerald-50 via-white to-emerald-100",
-      border: "border-t-emerald-600",
-      ring: "ring-emerald-300",
-      text: "text-emerald-700",
+      active: "bg-emerald-600 text-white border-emerald-600",
+      inactive:
+        "bg-white text-emerald-700 border-slate-200 hover:border-emerald-300 hover:bg-emerald-50",
     },
     {
       category: "Patent",
@@ -44,103 +42,78 @@ export default function PublicationStats({
       label: "Granted Patent",
       shortLabel: "Patent",
       icon: Award,
-      gradient: "from-amber-50 via-white to-yellow-100",
-      border: "border-t-amber-500",
-      ring: "ring-amber-300",
-      text: "text-amber-700",
+      active: "bg-amber-500 text-white border-amber-500",
+      inactive:
+        "bg-white text-amber-700 border-slate-200 hover:border-amber-300 hover:bg-amber-50",
     },
   ];
 
   return (
-    <div className="grid grid-cols-3 gap-2 sm:flex sm:justify-center sm:gap-5">
+    <div className="grid grid-cols-3 gap-2 sm:flex sm:justify-center sm:gap-4">
 
       {stats.map((item) => {
         const Icon = item.icon;
-        const active = value === item.category;
+        const selected = value === item.category;
 
         return (
           <button
             key={item.category}
             type="button"
             onClick={() => onChange(item.category)}
+            aria-pressed={selected}
             className={`
               min-w-0
+              flex-1
               rounded-2xl
-              border
-              border-slate-200
-              border-t-4
-              ${item.border}
-              bg-gradient-to-br
-              ${item.gradient}
+              border-2
               px-2
               py-3
               text-center
-              shadow-sm
               transition-all
-              duration-300
+              duration-200
               sm:w-64
-              sm:p-4
-              sm:hover:-translate-y-2
-              sm:hover:scale-[1.02]
-              sm:hover:shadow-xl
+              sm:flex-none
+              sm:px-4
+              sm:py-4
               ${
-                active
-                  ? item.category === "Journal"
-                    ? "scale-[1.02] ring-2 ring-blue-500 shadow-lg sm:scale-105"
-                    : item.category === "Conference"
-                    ? "scale-[1.02] ring-2 ring-emerald-500 shadow-lg sm:scale-105"
-                    : "scale-[1.02] ring-2 ring-amber-500 shadow-lg sm:scale-105"
-                  : ""
+                selected
+                  ? `${item.active} shadow-md`
+                  : `${item.inactive} shadow-sm`
               }
             `}
           >
 
-            {/* Icon + Number */}
+            {/* Icon */}
 
-            <div
-              className={`
-                mx-auto
-                flex
-                h-11
-                w-11
-                items-center
-                justify-center
-                rounded-full
-                bg-white/80
-                shadow-sm
-                ring-1
-                ${item.ring}
-                sm:h-16
-                sm:w-16
-                sm:shadow-md
-              `}
-            >
-              <div className="flex flex-col items-center">
+            <Icon
+              className="mx-auto h-5 w-5 sm:h-6 sm:w-6"
+            />
 
-                <Icon
-                  className={`mb-0.5 h-3.5 w-3.5 ${item.text} sm:mb-1 sm:h-4 sm:w-4`}
-                />
+            {/* Count */}
 
-                <span
-                  className={`text-xl font-black ${item.text} sm:text-3xl`}
-                >
-                  {item.value}
-                </span>
-
-              </div>
+            <div className="mt-1 text-xl font-black sm:mt-2 sm:text-3xl">
+              {item.value}
             </div>
 
-            {/* Label */}
+            {/* Mobile label */}
 
-            <h3 className="mt-2 text-[11px] font-bold leading-tight text-slate-800 sm:mt-3 sm:text-lg">
-              <span className="sm:hidden">
-                {item.shortLabel}
-              </span>
+            <div className="mt-1 text-[10px] font-semibold leading-tight sm:hidden">
+              {item.shortLabel}
+            </div>
 
-              <span className="hidden sm:inline">
-                {item.label}
-              </span>
-            </h3>
+            {/* Desktop label */}
+
+            <div className="mt-1 hidden text-sm font-semibold sm:block sm:text-lg">
+              {item.label}
+            </div>
+
+            {/* Selected indicator */}
+
+            {selected && (
+              <div className="mt-1.5 text-[9px] font-bold uppercase tracking-wider opacity-90 sm:mt-2 sm:text-[10px]">
+                Selected
+              </div>
+            )}
 
           </button>
         );
