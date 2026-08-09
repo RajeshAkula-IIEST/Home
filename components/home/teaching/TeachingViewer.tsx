@@ -15,34 +15,43 @@ export default function TeachingViewer({
   onClose,
 }: Props) {
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-white">
+    <div className="fixed inset-0 z-[100] bg-white">
 
       {/* ===================================================== */}
-      {/* HEADER */}
+      {/* THIN HEADER */}
       {/* ===================================================== */}
 
-      <div className="flex shrink-0 items-center justify-between border-b bg-white px-3 py-3 sm:px-6 sm:py-4">
+      <div className="absolute left-0 right-0 top-0 z-[110] flex h-10 items-center justify-between border-b border-slate-200 bg-white/95 px-2 shadow-sm backdrop-blur sm:h-12 sm:px-4">
 
-        {/* Close button */}
+        {/* Close Button */}
 
         <button
           type="button"
           onClick={onClose}
-          className="flex items-center gap-1.5 rounded-xl border border-slate-300 px-3 py-2 text-sm font-semibold transition hover:bg-slate-100 sm:gap-2 sm:px-4"
+          className="
+            flex
+            items-center
+            gap-1
+            rounded-lg
+            px-2
+            py-1
+            text-xs
+            font-semibold
+            text-slate-600
+            transition
+            hover:bg-slate-100
+            active:bg-slate-200
+          "
         >
-          <X size={17} />
+          <X size={15} />
           <span>Close</span>
         </button>
 
-        {/* Title */}
+        {/* Viewer Type */}
 
-        <div className="min-w-0 flex-1 px-3 text-center">
+        <div className="min-w-0 flex-1 px-2 text-center">
 
-          <h2 className="truncate text-sm font-bold text-slate-900 sm:text-xl">
-            {course.title}
-          </h2>
-
-          <p className="text-xs text-slate-500 sm:text-sm">
+          <p className="truncate text-[11px] font-semibold text-slate-700 sm:text-sm">
             {viewer === "portal"
               ? "Student Portal"
               : "Course Contents"}
@@ -50,9 +59,9 @@ export default function TeachingViewer({
 
         </div>
 
-        {/* Header balancing space */}
+        {/* Balance Header */}
 
-        <div className="w-[58px] sm:w-24" />
+        <div className="w-[45px] sm:w-[55px]" />
 
       </div>
 
@@ -60,23 +69,29 @@ export default function TeachingViewer({
       {/* VIEWER */}
       {/* ===================================================== */}
 
-      <div className="min-h-0 flex-1">
-
-        <iframe
-          src={
-            viewer === "portal"
-              ? course.studentPortal
-              : course.courseContent
-          }
-          title={
-            viewer === "portal"
-              ? "Student Portal"
-              : "Course Contents"
-          }
-          className="h-full w-full border-0"
-        />
-
-      </div>
+      <iframe
+        src={
+          viewer === "portal"
+            ? course.studentPortal
+            : course.courseContent
+        }
+        title={
+          viewer === "portal"
+            ? "Student Portal"
+            : "Course Contents"
+        }
+        className="
+          absolute
+          bottom-0
+          left-0
+          top-10
+          h-[calc(100%-2.5rem)]
+          w-full
+          border-0
+          sm:top-12
+          sm:h-[calc(100%-3rem)]
+        "
+      />
 
     </div>
   );
