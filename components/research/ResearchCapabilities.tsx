@@ -15,7 +15,7 @@ const capabilities = [
       "Battery Testing",
       "Infrared Thermography",
       "Thermal Characterization",
-      ],
+    ],
   },
 
   {
@@ -57,25 +57,26 @@ const capabilities = [
 
 export default function ResearchCapabilities() {
   return (
-    <div>
+    <div className="w-full">
 
+      {/* ===================================================== */}
+      {/* EXPERTISE */}
+      {/* ===================================================== */}
 
-      <h2 className="mt-4 text-3xl font-bold text-slate-900">
-        Expertise 
+      <h2 className="mt-8 text-2xl font-bold text-slate-900 sm:mt-10 sm:text-3xl">
+        Expertise
       </h2>
 
-     <div className="mt-4 grid gap-2 lg:grid-cols-4">
+      <div className="mt-4 grid gap-4 lg:grid-cols-4">
 
         {capabilities.map((item) => {
-
           const Icon = item.icon;
 
           return (
-
             <div
               key={item.title}
               className="
-                rounded-3xl
+                rounded-2xl
                 border
                 border-slate-200
                 bg-white
@@ -85,49 +86,54 @@ export default function ResearchCapabilities() {
                 duration-300
                 hover:-translate-y-1
                 hover:shadow-lg
+                sm:rounded-3xl
               "
             >
 
-              <div className="flex items-center gap-4">
+              {/* ================================================= */}
+              {/* CARD HEADER */}
+              {/* ================================================= */}
+
+              <div className="flex items-center gap-3 sm:gap-4">
 
                 <div
-                  className={`flex h-12 w-12 items-center justify-center rounded-2xl ${item.bg}`}
+                  className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl sm:h-12 sm:w-12 sm:rounded-2xl ${item.bg}`}
                 >
                   <Icon
                     className={item.color}
-                    size={28}
+                    size={24}
                   />
                 </div>
 
-                <h3 className="text-lg font-bold text-slate-900">
+                <h3 className="text-base font-bold leading-snug text-slate-900 sm:text-lg">
                   {item.title}
                 </h3>
 
               </div>
 
-              <ul className="mt-6 space-y-2">
+              {/* ================================================= */}
+              {/* EXPERTISE ITEMS */}
+              {/* ================================================= */}
+
+              <ul className="mt-4 space-y-2 sm:mt-6">
 
                 {item.items.map((point) => (
-
                   <li
                     key={point}
-                    className="flex items-center gap-3 text-slate-600"
+                    className="flex items-start gap-3 text-sm leading-6 text-slate-600 sm:text-base"
                   >
 
-                    <span className="h-2 w-2 rounded-full bg-blue-500" />
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" />
 
-                    {point}
+                    <span>{point}</span>
 
                   </li>
-
                 ))}
 
               </ul>
 
             </div>
-
           );
-
         })}
 
       </div>
