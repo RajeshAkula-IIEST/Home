@@ -1,4 +1,7 @@
-import { GraduationCap, Users, BookOpen } from "lucide-react";
+import {
+  GraduationCap,
+  BookOpen,
+} from "lucide-react";
 
 export default function Mentoring() {
   const stats = [
@@ -23,44 +26,71 @@ export default function Mentoring() {
   ];
 
   return (
-    <div className="mt-16">
-      <h3 className="text-2xl font-bold text-slate-900">
-        Student Mentoring
-      </h3>
+    <div className="w-full">
 
-      <p className="mt-3 max-w-3xl text-slate-600">
+      {/* ===================================================== */}
+      {/* STUDENT MENTORING */}
+      {/* ===================================================== */}
+
+      <h2 className="mt-8 text-2xl font-bold text-slate-900 sm:mt-10 sm:text-3xl">
+        Student Mentoring
+      </h2>
+
+      <p className="mt-3 max-w-3xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
         I actively mentor undergraduate and postgraduate students in
         battery technology, thermal management, machine learning, and
         computational modelling, encouraging independent research and
         problem-solving.
       </p>
 
-      <div className="mt-8 grid gap-8 md:grid-cols-3">
+      {/* ===================================================== */}
+      {/* MENTORING STATISTICS */}
+      {/* ===================================================== */}
+
+      <div className="mt-5 grid gap-3 sm:mt-8 sm:gap-4 md:grid-cols-3">
+
         {stats.map((item) => {
           const Icon = item.icon;
 
           return (
             <div
               key={item.title}
-              className="rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+              className="
+                rounded-2xl
+                border
+                border-slate-200
+                bg-white
+                p-5
+                text-center
+                shadow-sm
+                transition
+                hover:-translate-y-1
+                hover:shadow-lg
+                sm:p-8
+                sm:rounded-2xl
+              "
             >
-              <Icon className="mx-auto h-10 w-10 text-sky-600" />
 
-              <h4 className="mt-5 text-4xl font-bold text-slate-900">
+              <Icon className="mx-auto h-8 w-8 text-sky-600 sm:h-10 sm:w-10" />
+
+              <h4 className="mt-3 text-3xl font-bold text-slate-900 sm:mt-5 sm:text-4xl">
                 {item.value}
               </h4>
 
-              <p className="mt-2 font-semibold text-slate-800">
+              <p className="mt-1 text-sm font-semibold text-slate-800 sm:mt-2 sm:text-base">
                 {item.title}
               </p>
 
-              <p className="text-slate-500">
+              <p className="text-sm text-slate-500">
                 {item.subtitle}
               </p>
+
             </div>
           );
         })}
+
       </div>
+
     </div>
   );
 }
