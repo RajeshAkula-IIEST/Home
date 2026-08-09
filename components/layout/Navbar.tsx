@@ -154,8 +154,7 @@ export default function Navbar({
 
     {/* Mobile navigation panel */}
 
-    <div className="fixed left-0 right-0 top-[76px] z-[95] max-h-[calc(100vh-76px)] overflow-y-auto border-t border-slate-200 bg-white shadow-xl lg:hidden">
-
+    <div className="fixed left-0 top-[76px] z-[95] w-[240px] max-h-[calc(100vh-76px)] overflow-y-auto border-r border-slate-200 bg-white shadow-xl lg:hidden">
       <div className="mx-auto max-w-7xl px-5 py-4 sm:px-6">
 
         {/* Navigation links */}
