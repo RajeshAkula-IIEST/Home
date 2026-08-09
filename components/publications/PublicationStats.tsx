@@ -85,7 +85,11 @@ export default function PublicationStats({
               sm:hover:shadow-xl
               ${
                 active
-                  ? "scale-[1.02] ring-2 ring-blue-500 shadow-lg sm:scale-105"
+                  ? item.category === "Journal"
+                    ? "scale-[1.02] ring-2 ring-blue-500 shadow-lg sm:scale-105"
+                    : item.category === "Conference"
+                    ? "scale-[1.02] ring-2 ring-emerald-500 shadow-lg sm:scale-105"
+                    : "scale-[1.02] ring-2 ring-amber-500 shadow-lg sm:scale-105"
                   : ""
               }
             `}
