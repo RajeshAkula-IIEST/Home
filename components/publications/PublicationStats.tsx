@@ -1,6 +1,10 @@
 "use client";
 
-import { BookOpen, Presentation, Award } from "lucide-react";
+import {
+  BookOpen,
+  Presentation,
+  Award,
+} from "lucide-react";
 
 interface Props {
   value: string;
@@ -16,6 +20,7 @@ export default function PublicationStats({
       category: "Journal",
       value: "13",
       label: "Journal Publications",
+      shortLabel: "Journals",
       icon: BookOpen,
       gradient: "from-blue-50 via-white to-blue-100",
       border: "border-t-blue-600",
@@ -26,6 +31,7 @@ export default function PublicationStats({
       category: "Conference",
       value: "8",
       label: "Conference Papers",
+      shortLabel: "Conferences",
       icon: Presentation,
       gradient: "from-emerald-50 via-white to-emerald-100",
       border: "border-t-emerald-600",
@@ -36,6 +42,7 @@ export default function PublicationStats({
       category: "Patent",
       value: "1",
       label: "Granted Patent",
+      shortLabel: "Patent",
       icon: Award,
       gradient: "from-amber-50 via-white to-yellow-100",
       border: "border-t-amber-500",
@@ -45,7 +52,8 @@ export default function PublicationStats({
   ];
 
   return (
-    <div className="flex flex-wrap justify-center gap-8">
+    <div className="grid grid-cols-3 gap-2 sm:flex sm:justify-center sm:gap-5">
+
       {stats.map((item) => {
         const Icon = item.icon;
         const active = value === item.category;
@@ -53,9 +61,10 @@ export default function PublicationStats({
         return (
           <button
             key={item.category}
+            type="button"
             onClick={() => onChange(item.category)}
             className={`
-              w-64
+              min-w-0
               rounded-2xl
               border
               border-slate-200
@@ -63,51 +72,76 @@ export default function PublicationStats({
               ${item.border}
               bg-gradient-to-br
               ${item.gradient}
-              p-4
+              px-2
+              py-3
               text-center
               shadow-sm
               transition-all
               duration-300
-              hover:-translate-y-2
-              hover:shadow-xl
-              hover:scale-[1.02]
+              sm:w-64
+              sm:p-4
+              sm:hover:-translate-y-2
+              sm:hover:scale-[1.02]
+              sm:hover:shadow-xl
               ${
                 active
-                  ? "ring-2 ring-blue-500 shadow-xl scale-105"
+                  ? "scale-[1.02] ring-2 ring-blue-500 shadow-lg sm:scale-105"
                   : ""
               }
             `}
           >
+
+            {/* Icon + Number */}
+
             <div
               className={`
                 mx-auto
                 flex
-                h-16
-                w-16
+                h-11
+                w-11
                 items-center
                 justify-center
                 rounded-full
                 bg-white/80
-                backdrop-blur
-                shadow-md
+                shadow-sm
                 ring-1
                 ${item.ring}
+                sm:h-16
+                sm:w-16
+                sm:shadow-md
               `}
             >
               <div className="flex flex-col items-center">
-                <Icon className={`mb-1 h-4 w-4 ${item.text}`} />
-                <span className={`text-3xl font-black ${item.text}`}>
+
+                <Icon
+                  className={`mb-0.5 h-3.5 w-3.5 ${item.text} sm:mb-1 sm:h-4 sm:w-4`}
+                />
+
+                <span
+                  className={`text-xl font-black ${item.text} sm:text-3xl`}
+                >
                   {item.value}
                 </span>
+
               </div>
             </div>
 
-            <h3 className="mt-3 text-lg font-bold text-slate-800">
-              {item.label}
+            {/* Label */}
+
+            <h3 className="mt-2 text-[11px] font-bold leading-tight text-slate-800 sm:mt-3 sm:text-lg">
+              <span className="sm:hidden">
+                {item.shortLabel}
+              </span>
+
+              <span className="hidden sm:inline">
+                {item.label}
+              </span>
             </h3>
+
           </button>
         );
       })}
+
     </div>
   );
 }
