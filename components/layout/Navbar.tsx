@@ -137,59 +137,75 @@ export default function Navbar({
       {/* MOBILE MENU */}
       {/* ===================================================== */}
 
-      {mobileOpen && (
-        <>
-          {/* Dark transparent backdrop */}
+      {/* ===================================================== */}
+{/* MOBILE MENU */}
+{/* ===================================================== */}
 
-          <button
-            type="button"
-            aria-label="Close mobile menu"
+{mobileOpen && (
+  <>
+    {/* Dark transparent backdrop */}
+
+    <button
+      type="button"
+      aria-label="Close mobile menu"
+      onClick={() => setMobileOpen(false)}
+      className="fixed inset-0 z-[90] bg-slate-900/20 lg:hidden"
+    />
+
+    {/* Mobile navigation panel */}
+
+    <div className="fixed left-0 right-0 top-[76px] z-[95] max-h-[calc(100vh-76px)] overflow-y-auto border-t border-slate-200 bg-white shadow-xl lg:hidden">
+
+      <div className="mx-auto max-w-7xl px-5 py-4 sm:px-6">
+
+        {/* Navigation links */}
+
+        <nav className="flex flex-col">
+
+          {links.map((item) => (
+            <button
+              key={item.page}
+              type="button"
+              onClick={() => handleNavigation(item.page)}
+              className={`w-full px-3 py-3 text-left text-base transition ${
+                activePage === item.page
+                  ? "font-semibold text-sky-700"
+                  : "text-slate-700 hover:text-sky-700"
+              }`}
+            >
+              <span className="flex items-center gap-3">
+                {activePage === item.page && (
+                  <span className="h-2 w-2 rounded-full bg-sky-700" />
+                )}
+
+                <span>{item.label}</span>
+              </span>
+            </button>
+          ))}
+
+        </nav>
+
+        {/* Mobile CV */}
+
+        <div className="mt-3 border-t border-slate-100 pt-3">
+
+          <a
+            href="/Rajesh_Akula_CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setMobileOpen(false)}
-            className="fixed inset-0 z-[90] bg-slate-900/20 lg:hidden"
-          />
+            className="inline-flex items-center gap-2 rounded-full border border-sky-700 px-5 py-2.5 text-sm font-semibold text-sky-700 transition hover:bg-sky-50 active:bg-sky-100"
+          >
+            <Download size={17} />
+            Download CV
+          </a>
 
-          {/* Mobile navigation panel */}
+        </div>
 
-          <div className="fixed left-0 right-0 top-[76px] z-[95] max-h-[calc(100vh-76px)] overflow-y-auto border-t border-slate-200 bg-white shadow-2xl lg:hidden">
-
-            <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6">
-
-              <nav className="flex flex-col gap-1">
-
-                {links.map((item) => (
-                  <button
-                    key={item.page}
-                    type="button"
-                    onClick={() => handleNavigation(item.page)}
-                    className={`w-full rounded-xl px-4 py-4 text-left text-base transition-all duration-200 ${
-                      activePage === item.page
-                        ? "bg-sky-100 font-semibold text-sky-700"
-                        : "text-slate-700 hover:bg-sky-50 hover:text-sky-700 active:bg-sky-100"
-                    }`}
-                  >
-                    {item.label}
-                  </button>
-                ))}
-
-              </nav>
-
-              {/* Mobile CV */}
-
-              <a
-                href="/Rajesh_Akula_CV.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setMobileOpen(false)}
-                className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-sky-700 px-5 py-4 font-semibold text-white transition hover:bg-sky-800 active:bg-sky-900"
-              >
-                <Download size={19} />
-                Download CV
-              </a>
-
-            </div>
-          </div>
-        </>
-      )}
+      </div>
+    </div>
+  </>
+)}
     </>
   );
 }
