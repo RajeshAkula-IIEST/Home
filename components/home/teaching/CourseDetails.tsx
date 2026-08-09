@@ -52,7 +52,7 @@ export default function CourseDetails({
 
           <div className="text-center">
 
-            <h2 className="mt-2 max-w-full break-words text-center text-xl font-bold leading-tight text-slate-900 sm:mt-3 sm:text-3xl sm:text-left">
+            <h2 className="mt-2 max-w-full break-words text-justify text-xl font-bold leading-tight text-slate-900 sm:mt-3 sm:text-3xl">
   {course.title}
 </h2>
 
@@ -98,7 +98,7 @@ export default function CourseDetails({
             {course.code}
           </span>
 
-          <h2 className="mt-2 max-w-full break-words text-center text-xl font-bold leading-tight text-slate-900 sm:mt-3 sm:text-3xl sm:text-left">
+          <h2 className="mt-2 max-w-full break-words text-justify text-xl font-bold leading-tight text-slate-900 sm:mt-3 sm:text-3xl">
   {course.title}
 </h2>
         </div>

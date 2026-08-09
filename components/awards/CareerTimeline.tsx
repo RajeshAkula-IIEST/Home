@@ -39,68 +39,171 @@ type Props = {
 
 export default function CareerTimeline({ onOpen }: Props) {
   return (
-    <section className="mt-8">
+    <div className="w-full min-w-0">
 
-      <div className="mb-8 text-center">
-        <h2 className="text-3xl font-bold text-slate-900">
+      {/* ===================================================== */}
+      {/* TITLE */}
+      {/* ===================================================== */}
+
+      <div className="mb-6 text-center sm:mb-8">
+        <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
           Career Milestones
         </h2>
       </div>
 
-      <div className="relative mx-auto max-w-3xl">
+      {/* ===================================================== */}
+      {/* TIMELINE */}
+      {/* ===================================================== */}
 
-        {/* Timeline */}
-        <div className="absolute left-1/2 top-0 h-full w-1 -translate-x-1/2 rounded-full bg-blue-100 z-0" />
+      <div className="relative mx-auto w-full max-w-3xl">
 
-        {milestones.map((item, index) => {
+        {/* Timeline line */}
 
-          const Icon = item.icon;
-          const left = index % 2 === 0;
+        <div
+          className="
+            absolute
+            bottom-0
+            left-5
+            top-0
+            z-0
+            w-1
+            rounded-full
+            bg-blue-100
+            sm:left-1/2
+            sm:-translate-x-1/2
+          "
+        />
 
-          return (
+        {/* Milestones */}
 
-            <div
-              key={item.year}
-              className="grid grid-cols-[1fr_70px_1fr] items-center"
-            >
+        <div className="space-y-6 sm:space-y-0">
 
-              {/* LEFT CARD */}
-              {left ? (
-                <div className="flex justify-end pr-4">
-                  <TimelineCard item={item} onOpen={onOpen} />
+          {milestones.map((item, index) => {
+            const Icon = item.icon;
+            const left = index % 2 === 0;
+
+            return (
+              <div
+                key={`${item.year}-${item.title}`}
+                className="
+                  relative
+                  grid
+                  grid-cols-[42px_minmax(0,1fr)]
+                  items-start
+                  sm:grid-cols-[1fr_70px_1fr]
+                  sm:items-center
+                "
+              >
+
+                {/* ================================================= */}
+                {/* MOBILE ICON */}
+                {/* ================================================= */}
+
+                <div className="relative z-10 flex justify-center sm:hidden">
+
+                  <div
+                    className={`
+                      flex
+                      h-10
+                      w-10
+                      items-center
+                      justify-center
+                      rounded-full
+                      text-white
+                      shadow-lg
+                      ${item.color}
+                    `}
+                  >
+                    <Icon size={18} />
+                  </div>
+
                 </div>
-              ) : (
-                <div />
-              )}
 
-              {/* ICON */}
-              <div className="flex justify-center">
-                <div
-                  className={`relative z-10 flex h-14 w-14 items-center justify-center rounded-full text-white shadow-xl ${item.color}`}
-                >
-                  <Icon size={24} />
+                {/* ================================================= */}
+                {/* DESKTOP LEFT CARD */}
+                {/* ================================================= */}
+
+                {left ? (
+                  <div className="hidden justify-end pr-4 sm:flex">
+                    <TimelineCard
+                      item={item}
+                      onOpen={onOpen}
+                    />
+                  </div>
+                ) : (
+                  <div className="hidden sm:block" />
+                )}
+
+                {/* ================================================= */}
+                {/* DESKTOP ICON */}
+                {/* ================================================= */}
+
+                <div className="hidden justify-center sm:flex">
+
+                  <div
+                    className={`
+                      relative
+                      z-10
+                      flex
+                      h-14
+                      w-14
+                      items-center
+                      justify-center
+                      rounded-full
+                      text-white
+                      shadow-xl
+                      ${item.color}
+                    `}
+                  >
+                    <Icon size={24} />
+                  </div>
+
                 </div>
+
+                {/* ================================================= */}
+                {/* DESKTOP RIGHT CARD */}
+                {/* ================================================= */}
+
+                {!left ? (
+                  <div className="hidden justify-start pl-4 sm:flex">
+                    <TimelineCard
+                      item={item}
+                      onOpen={onOpen}
+                    />
+                  </div>
+                ) : (
+                  <div className="hidden sm:block" />
+                )}
+
+                {/* ================================================= */}
+                {/* MOBILE CARD */}
+                {/* ================================================= */}
+
+                <div className="min-w-0 pl-3 sm:hidden">
+
+                  <TimelineCard
+                    item={item}
+                    onOpen={onOpen}
+                  />
+
+                </div>
+
               </div>
+            );
+          })}
 
-              {/* RIGHT CARD */}
-              {!left ? (
-                <div className="flex justify-start pl-4">
-                  <TimelineCard item={item} onOpen={onOpen} />
-                </div>
-              ) : (
-                <div />
-              )}
-
-            </div>
-
-          );
-        })}
+        </div>
 
       </div>
 
-    </section>
+    </div>
   );
 }
+
+
+/* =============================================================
+   TIMELINE CARD
+============================================================= */
 
 function TimelineCard({
   item,
@@ -110,23 +213,44 @@ function TimelineCard({
   onOpen: (file: string, title: string) => void;
 }) {
   return (
-    <div className="w-[320px] rounded-3xl border border-slate-200 bg-white px-5 py-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+    <div className="min-w-0 max-w-full">
+
+      {/* Year */}
 
       <span className="text-sm font-semibold text-blue-600">
         {item.year}
       </span>
 
-      <h3 className="mt-1 text-2xl font-bold">
+      {/* Title */}
+
+      <h3 className="mt-1 break-words text-xl font-bold leading-tight text-slate-900 sm:text-2xl">
         {item.title}
       </h3>
 
-      <p className="mt-1 text-slate-600">
+      {/* Place */}
+
+      <p className="mt-1 break-words text-sm leading-6 text-slate-600 sm:text-base">
         {item.place}
       </p>
 
+      {/* Certificate */}
+
       <button
+        type="button"
         onClick={() => onOpen(item.file, item.title)}
-        className="mt-3 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-700"
+        className="
+          mt-3
+          rounded-lg
+          bg-blue-600
+          px-4
+          py-2
+          text-sm
+          font-semibold
+          text-white
+          transition
+          hover:bg-blue-700
+          active:bg-blue-800
+        "
       >
         View Certificate
       </button>

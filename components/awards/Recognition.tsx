@@ -12,33 +12,75 @@ const recognitions = [
 
 export default function Recognition() {
   return (
-    <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+    <div className="w-full min-w-0 max-w-full">
 
-      <h2 className="text-3xl font-bold text-slate-900">
+      {/* ===================================================== */}
+      {/* HEADING */}
+      {/* ===================================================== */}
+
+      <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
         Research Recognition
       </h2>
 
-      <div className="mt-8 recognition-scroll overflow-hidden">
+      {/* ===================================================== */}
+      {/* RECOGNITION SCROLL */}
+      {/* ===================================================== */}
 
-        <div className="recognition-track">
+      <div className="recognition-scroll mt-5 w-full max-w-full overflow-hidden sm:mt-8">
+
+        <div className="recognition-track w-full max-w-full">
 
           {[...recognitions, ...recognitions].map((item, index) => (
-
             <div
               key={index}
-              className="flex items-start gap-4 rounded-xl p-2 transition-all duration-300 hover:bg-slate-50"
+              className="
+                flex
+                min-w-0
+                max-w-full
+                items-start
+                gap-3
+                rounded-xl
+                p-2
+                transition-all
+                duration-300
+                hover:bg-slate-50
+                sm:gap-4
+              "
             >
 
+              {/* Icon */}
+
               <CheckCircle2
-                className="mt-1 h-6 w-6 flex-shrink-0 text-emerald-500"
+                className="
+                  mt-1
+                  h-5
+                  w-5
+                  shrink-0
+                  text-emerald-500
+                  sm:h-6
+                  sm:w-6
+                "
               />
 
-              <p className="flex-1 text-justify text-[1.05rem] leading-8 text-slate-700">
+              {/* Recognition */}
+
+              <p
+                className="
+                  min-w-0
+                  flex-1
+                  break-words
+                  text-justify
+                  text-base
+                  leading-7
+                  text-slate-700
+                  sm:text-[1.05rem]
+                  sm:leading-8
+                "
+              >
                 {item}
               </p>
 
             </div>
-
           ))}
 
         </div>
