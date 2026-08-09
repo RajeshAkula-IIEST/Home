@@ -104,8 +104,8 @@ export default function CourseList({
 
                   {/* Course title */}
 
-                  <p className="mt-2 text-sm leading-5 text-slate-600 sm:mt-3 sm:leading-6">
-                    {course.title}
+                  <p className="mt-2 max-w-full break-words text-sm leading-5 text-slate-600 sm:mt-3 sm:leading-6">
+                  {course.title}
                   </p>
 
                 </div>

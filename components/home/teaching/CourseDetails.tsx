@@ -52,9 +52,9 @@ export default function CourseDetails({
 
           <div className="text-center">
 
-            <h2 className="text-lg font-bold text-slate-800">
-              {course.title}
-            </h2>
+            <h2 className="mt-2 max-w-full break-words text-xl font-bold leading-tight text-slate-900 sm:mt-3 sm:text-3xl">
+  {course.title}
+</h2>
 
             <p className="text-sm text-slate-500">
               {viewer === "portal"
@@ -98,9 +98,9 @@ export default function CourseDetails({
             {course.code}
           </span>
 
-          <h2 className="mt-3 text-3xl font-bold leading-tight text-slate-900">
-            {course.title}
-          </h2>
+          <h2 className="mt-2 max-w-full break-words text-xl font-bold leading-tight text-slate-900 sm:mt-3 sm:text-3xl">
+  {course.title}
+</h2>
 
         </div>
 
@@ -118,9 +118,9 @@ export default function CourseDetails({
 
       {/* Description */}
 
-      <p className="mt-4 text-base leading-8 text-slate-600">
-        {course.description}
-      </p>
+      <p className="mt-3 max-w-full text-justify text-base leading-7 text-slate-600 sm:mt-4 sm:leading-8">
+  {course.description}
+</p>
 
       {/* Dashboard */}
 
