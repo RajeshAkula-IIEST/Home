@@ -107,14 +107,6 @@ export default function PublicationStats({
               {item.label}
             </div>
 
-            {/* Selected indicator */}
-
-            {selected && (
-              <div className="mt-1.5 text-[9px] font-bold uppercase tracking-wider opacity-90 sm:mt-2 sm:text-[10px]">
-                Selected
-              </div>
-            )}
-
           </button>
         );
       })}
