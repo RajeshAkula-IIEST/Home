@@ -32,7 +32,7 @@ export const courses: Course[] = [
       "This course introduces Artificial Intelligence and Machine Learning concepts with emphasis on Mechanical Engineering applications. Students learn various search methods, First order logic, and uncertainty concepts.",
 
     studentPortal:
-      "https://me4127-2026.github.io/login/login.html",
+      "https://me4127-2026.github.io/loginn/login.html",
 
     courseContent:
       "/coursecontents/ME4127.pdf",
