@@ -16,6 +16,7 @@ import PublicationsPage from "@/components/publications/PublicationsPage";
 
 import Teaching from "@/components/home/teaching/Teaching";
 import Awards from "@/components/awards/Awards";
+import Students from "@/components/home/students/Students";
 import Contact from "@/components/contact/Contact";
 
 export default function MainLayout() {
@@ -47,6 +48,9 @@ export default function MainLayout() {
 
         {activePage === "awards" && (
           <Awards />
+        )}
+        {activePage === "students" && (
+          <Students />
         )}
 
         {activePage === "contact" && (

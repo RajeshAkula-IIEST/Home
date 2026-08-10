@@ -15,6 +15,7 @@ const links = [
   { label: "Publications", page: "publications" },
   { label: "Teaching", page: "teaching" },
   { label: "Awards", page: "awards" },
+  { label: "Students", page: "students" },
   { label: "Contact", page: "contact" },
 ];
 
