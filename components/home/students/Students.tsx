@@ -8,6 +8,7 @@ import {
   Briefcase,
   FlaskConical,
   UserRound,
+  ChevronDown,
 } from "lucide-react";
 
 import Section from "@/components/ui/Section";
@@ -78,119 +79,216 @@ export default function Students() {
 
         <div className="mx-auto w-full max-w-4xl text-center">
 
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-blue-600 sm:text-sm">
-            STUDENTS
-          </p>
-
           <h1 className="mt-2 text-2xl font-extrabold text-slate-900 sm:text-4xl">
             Student Supervision
           </h1>
 
-        </div>
-
-
-        {/* ===================================================== */}
-        {/* CATEGORY SELECTOR */}
-        {/* ===================================================== */}
-
-        <div className="mt-7 w-full sm:mt-8">
-
-          {/* Mobile: horizontally scrollable */}
-          <div className="overflow-x-auto px-1 pb-2 sm:hidden">
-            <div className="flex w-max min-w-full justify-start gap-2">
-
-              {categories.map((item) => {
-                const Icon = item.icon;
-                const active = category === item.value;
-
-                return (
-                  <button
-                    key={item.value}
-                    type="button"
-                    onClick={() => setCategory(item.value)}
-                    className={`
-                      flex
-                      shrink-0
-                      items-center
-                      gap-1.5
-                      rounded-xl
-                      px-3.5
-                      py-2.5
-                      text-sm
-                      font-semibold
-                      transition-all
-                      duration-200
-                      ${
-                        active
-                          ? "bg-blue-600 text-white shadow-md"
-                          : "bg-slate-100 text-slate-600"
-                      }
-                    `}
-                  >
-                    <Icon size={16} />
-                    {item.label}
-                  </button>
-                );
-              })}
-
-            </div>
-          </div>
-
-
-          {/* Desktop / tablet */}
-
-          <div className="hidden justify-center sm:flex">
-
-            <div className="flex flex-wrap justify-center gap-2">
-
-              {categories.map((item) => {
-                const Icon = item.icon;
-                const active = category === item.value;
-
-                return (
-                  <button
-                    key={item.value}
-                    type="button"
-                    onClick={() => setCategory(item.value)}
-                    className={`
-                      flex
-                      items-center
-                      gap-2
-                      rounded-xl
-                      px-4
-                      py-2.5
-                      text-sm
-                      font-semibold
-                      transition-all
-                      duration-200
-                      sm:px-5
-                      sm:py-3
-                      sm:text-base
-                      ${
-                        active
-                          ? "bg-blue-600 text-white shadow-md"
-                          : "bg-slate-100 text-slate-600 hover:bg-blue-50 hover:text-blue-700"
-                      }
-                    `}
-                  >
-                    <Icon size={17} />
-                    {item.label}
-                  </button>
-                );
-              })}
-
-            </div>
-
-          </div>
+          <p className="mx-auto mt-5 px-2 text-base leading-7 text-slate-600 sm:mt-6 sm:px-0 sm:text-lg sm:leading-8">
+            Academic guidance and research supervision across
+            undergraduate, postgraduate, minor project and internship
+            programs.
+          </p>
 
         </div>
 
 
         {/* ===================================================== */}
-        {/* CURRENT / PAST */}
+        {/* MOBILE DROPDOWN SELECTORS */}
         {/* ===================================================== */}
 
-        <div className="mt-4 flex justify-center sm:mt-5">
+        <div className="mt-7 grid gap-3 sm:hidden">
+
+          {/* Category */}
+
+          <div>
+            <label
+              htmlFor="student-category"
+              className="mb-1.5 block text-sm font-semibold text-slate-700"
+            >
+              Student Category
+            </label>
+
+            <div className="relative">
+
+              <select
+                id="student-category"
+                value={category}
+                onChange={(e) =>
+                  setCategory(
+                    e.target.value as StudentCategory
+                  )
+                }
+                className="
+                  w-full
+                  appearance-none
+                  rounded-xl
+                  border
+                  border-slate-200
+                  bg-white
+                  px-4
+                  py-3
+                  pr-10
+                  text-sm
+                  font-semibold
+                  text-slate-700
+                  shadow-sm
+                  outline-none
+                  focus:border-blue-500
+                  focus:ring-2
+                  focus:ring-blue-100
+                "
+              >
+                {categories.map((item) => (
+                  <option
+                    key={item.value}
+                    value={item.value}
+                  >
+                    {item.label}
+                  </option>
+                ))}
+              </select>
+
+              <ChevronDown
+                size={18}
+                className="
+                  pointer-events-none
+                  absolute
+                  right-3
+                  top-1/2
+                  -translate-y-1/2
+                  text-slate-500
+                "
+              />
+
+            </div>
+
+          </div>
+
+
+          {/* Current / Past */}
+
+          <div>
+
+            <label
+              htmlFor="student-status"
+              className="mb-1.5 block text-sm font-semibold text-slate-700"
+            >
+              Status
+            </label>
+
+            <div className="relative">
+
+              <select
+                id="student-status"
+                value={status}
+                onChange={(e) =>
+                  setStatus(
+                    e.target.value as StudentStatus
+                  )
+                }
+                className="
+                  w-full
+                  appearance-none
+                  rounded-xl
+                  border
+                  border-slate-200
+                  bg-white
+                  px-4
+                  py-3
+                  pr-10
+                  text-sm
+                  font-semibold
+                  text-slate-700
+                  shadow-sm
+                  outline-none
+                  focus:border-blue-500
+                  focus:ring-2
+                  focus:ring-blue-100
+                "
+              >
+                <option value="current">
+                  Current
+                </option>
+
+                <option value="past">
+                  Past
+                </option>
+
+              </select>
+
+              <ChevronDown
+                size={18}
+                className="
+                  pointer-events-none
+                  absolute
+                  right-3
+                  top-1/2
+                  -translate-y-1/2
+                  text-slate-500
+                "
+              />
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        {/* ===================================================== */}
+        {/* DESKTOP CATEGORY SELECTOR */}
+        {/* ===================================================== */}
+
+        <div className="mt-8 hidden justify-center sm:flex">
+
+          <div className="flex flex-wrap justify-center gap-2">
+
+            {categories.map((item) => {
+              const Icon = item.icon;
+              const active = category === item.value;
+
+              return (
+                <button
+                  key={item.value}
+                  type="button"
+                  onClick={() => setCategory(item.value)}
+                  className={`
+                    flex
+                    items-center
+                    gap-2
+                    rounded-xl
+                    px-4
+                    py-2.5
+                    text-sm
+                    font-semibold
+                    transition-all
+                    duration-200
+                    sm:px-5
+                    sm:py-3
+                    sm:text-base
+                    ${
+                      active
+                        ? "bg-blue-600 text-white shadow-md"
+                        : "bg-slate-100 text-slate-600 hover:bg-blue-50 hover:text-blue-700"
+                    }
+                  `}
+                >
+                  <Icon size={17} />
+                  {item.label}
+                </button>
+              );
+            })}
+
+          </div>
+
+        </div>
+
+
+        {/* ===================================================== */}
+        {/* DESKTOP CURRENT / PAST */}
+        {/* ===================================================== */}
+
+        <div className="mt-5 hidden justify-center sm:flex">
 
           <div className="inline-flex rounded-2xl border border-slate-200 bg-slate-100 p-1 shadow-sm">
 
@@ -199,14 +297,11 @@ export default function Students() {
               onClick={() => setStatus("current")}
               className={`
                 rounded-xl
-                px-6
-                py-2.5
-                text-sm
+                px-8
+                py-3
+                text-base
                 font-semibold
                 transition-all
-                sm:px-8
-                sm:py-3
-                sm:text-base
                 ${
                   status === "current"
                     ? "bg-blue-600 text-white shadow-md"
@@ -222,14 +317,11 @@ export default function Students() {
               onClick={() => setStatus("past")}
               className={`
                 rounded-xl
-                px-6
-                py-2.5
-                text-sm
+                px-8
+                py-3
+                text-base
                 font-semibold
                 transition-all
-                sm:px-8
-                sm:py-3
-                sm:text-base
                 ${
                   status === "past"
                     ? "bg-blue-600 text-white shadow-md"
@@ -263,7 +355,7 @@ export default function Students() {
 
 
         {/* ===================================================== */}
-        {/* STUDENT CONTENT */}
+        {/* CONTENT */}
         {/* ===================================================== */}
 
         <div className="mt-4 w-full sm:mt-5">
@@ -283,8 +375,6 @@ export default function Students() {
             />
 
           ) : (
-
-            /* Center student cards */
 
             <div className="flex w-full flex-wrap justify-center gap-4">
 
@@ -371,7 +461,9 @@ function StudentCard({
           </p>
         )}
 
-        {student.role && (
+        {/* Hide Role for Intern */}
+
+        {student.role && student.category !== "Intern" && (
           <p>
             <span className="font-semibold text-slate-800">
               Role:
@@ -442,22 +534,35 @@ function ProjectStudents({
 
           {/* Project heading */}
 
-          <div className="text-center">
+          <div>
 
             <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-xl bg-violet-100 text-violet-700">
               <FlaskConical size={21} />
             </div>
 
-            <p className="mt-3 text-sm font-semibold text-violet-600">
+            <p className="mt-3 text-center text-sm font-semibold text-violet-600">
               {group.group}
             </p>
 
-            <h3 className="mt-1 break-words text-lg font-bold leading-7 text-slate-900 sm:text-xl">
+            {/* Justified project title */}
+
+            <h3
+              className="
+                mt-2
+                break-words
+                text-justify
+                text-lg
+                font-bold
+                leading-7
+                text-slate-900
+                sm:text-xl
+              "
+            >
               {group.title}
             </h3>
 
             {group.duration && (
-              <p className="mt-2 text-sm text-slate-500">
+              <p className="mt-2 text-center text-sm text-slate-500">
                 {group.duration}
               </p>
             )}
