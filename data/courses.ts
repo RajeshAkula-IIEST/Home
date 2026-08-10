@@ -85,7 +85,7 @@ export const courses: Course[] = [
       "https://me3273dy2026.github.io/login",
 
     courseContent:
-      "",
+      "/coursecontents/ME3273.pdf",
   },
 
 ];
