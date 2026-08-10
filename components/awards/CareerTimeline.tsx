@@ -29,7 +29,7 @@ const milestones = [
     place: "AIR 1549 • Mechanical Engineering",
     icon: Trophy,
     color: "bg-emerald-600",
-    file: "/certificates/GATE2017.pdf",
+    file: "/certificates/GATE_2017.pdf",
   },
 ];
 
