@@ -70,29 +70,21 @@ export default function Students() {
   return (
     <Section id="students">
 
-      <div className="w-full min-w-0">
+      <div className="w-full min-w-0 max-w-full">
 
         {/* ===================================================== */}
         {/* HEADER */}
         {/* ===================================================== */}
 
-        <div className="text-center">
+        <div className="mx-auto w-full max-w-4xl text-center">
 
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-600">
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-blue-600 sm:text-sm">
             STUDENTS
           </p>
 
-          <h1 className="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+          <h1 className="mt-2 text-2xl font-extrabold text-slate-900 sm:text-4xl">
             Student Supervision
           </h1>
-
-          <div className="mx-auto mt-4 h-1 w-20 rounded-full bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-500 sm:mt-5 sm:w-24" />
-
-          <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
-            Academic guidance and research supervision across
-            undergraduate, postgraduate, minor project and internship
-            programs.
-          </p>
 
         </div>
 
@@ -101,46 +93,93 @@ export default function Students() {
         {/* CATEGORY SELECTOR */}
         {/* ===================================================== */}
 
-        <div className="mt-8 w-full overflow-x-auto pb-2">
+        <div className="mt-7 w-full sm:mt-8">
 
-          <div className="flex min-w-max justify-center gap-2">
+          {/* Mobile: horizontally scrollable */}
+          <div className="overflow-x-auto px-1 pb-2 sm:hidden">
+            <div className="flex w-max min-w-full justify-start gap-2">
 
-            {categories.map((item) => {
-              const Icon = item.icon;
-              const active = category === item.value;
+              {categories.map((item) => {
+                const Icon = item.icon;
+                const active = category === item.value;
 
-              return (
-                <button
-                  key={item.value}
-                  type="button"
-                  onClick={() => setCategory(item.value)}
-                  className={`
-                    flex
-                    shrink-0
-                    items-center
-                    gap-2
-                    rounded-xl
-                    px-4
-                    py-2.5
-                    text-sm
-                    font-semibold
-                    transition-all
-                    duration-200
-                    sm:px-5
-                    sm:py-3
-                    sm:text-base
-                    ${
-                      active
-                        ? "bg-blue-600 text-white shadow-md"
-                        : "bg-slate-100 text-slate-600 hover:bg-blue-50 hover:text-blue-700"
-                    }
-                  `}
-                >
-                  <Icon size={17} />
-                  {item.label}
-                </button>
-              );
-            })}
+                return (
+                  <button
+                    key={item.value}
+                    type="button"
+                    onClick={() => setCategory(item.value)}
+                    className={`
+                      flex
+                      shrink-0
+                      items-center
+                      gap-1.5
+                      rounded-xl
+                      px-3.5
+                      py-2.5
+                      text-sm
+                      font-semibold
+                      transition-all
+                      duration-200
+                      ${
+                        active
+                          ? "bg-blue-600 text-white shadow-md"
+                          : "bg-slate-100 text-slate-600"
+                      }
+                    `}
+                  >
+                    <Icon size={16} />
+                    {item.label}
+                  </button>
+                );
+              })}
+
+            </div>
+          </div>
+
+
+          {/* Desktop / tablet */}
+
+          <div className="hidden justify-center sm:flex">
+
+            <div className="flex flex-wrap justify-center gap-2">
+
+              {categories.map((item) => {
+                const Icon = item.icon;
+                const active = category === item.value;
+
+                return (
+                  <button
+                    key={item.value}
+                    type="button"
+                    onClick={() => setCategory(item.value)}
+                    className={`
+                      flex
+                      items-center
+                      gap-2
+                      rounded-xl
+                      px-4
+                      py-2.5
+                      text-sm
+                      font-semibold
+                      transition-all
+                      duration-200
+                      sm:px-5
+                      sm:py-3
+                      sm:text-base
+                      ${
+                        active
+                          ? "bg-blue-600 text-white shadow-md"
+                          : "bg-slate-100 text-slate-600 hover:bg-blue-50 hover:text-blue-700"
+                      }
+                    `}
+                  >
+                    <Icon size={17} />
+                    {item.label}
+                  </button>
+                );
+              })}
+
+            </div>
 
           </div>
 
@@ -148,10 +187,10 @@ export default function Students() {
 
 
         {/* ===================================================== */}
-        {/* CURRENT / PAST SELECTOR */}
+        {/* CURRENT / PAST */}
         {/* ===================================================== */}
 
-        <div className="mt-5 flex justify-center">
+        <div className="mt-4 flex justify-center sm:mt-5">
 
           <div className="inline-flex rounded-2xl border border-slate-200 bg-slate-100 p-1 shadow-sm">
 
@@ -210,7 +249,7 @@ export default function Students() {
         {/* RESULT COUNT */}
         {/* ===================================================== */}
 
-        <div className="mt-6 text-center">
+        <div className="mt-5 text-center sm:mt-6">
 
           <p className="text-sm font-medium text-slate-500">
             {filteredStudents.length === 0
@@ -227,7 +266,7 @@ export default function Students() {
         {/* STUDENT CONTENT */}
         {/* ===================================================== */}
 
-        <div className="mt-4">
+        <div className="mt-4 w-full sm:mt-5">
 
           {filteredStudents.length === 0 ? (
 
@@ -245,7 +284,9 @@ export default function Students() {
 
           ) : (
 
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            /* Center student cards */
+
+            <div className="flex w-full flex-wrap justify-center gap-4">
 
               {filteredStudents.map((student) => (
                 <StudentCard
@@ -279,12 +320,15 @@ function StudentCard({
   return (
     <div
       className="
+        w-full
+        max-w-md
         min-w-0
         rounded-2xl
         border
         border-slate-200
         bg-white
         p-5
+        text-center
         shadow-sm
         transition-all
         duration-300
@@ -294,29 +338,29 @@ function StudentCard({
       "
     >
 
-      <div className="flex items-start gap-4">
+      {/* Student icon */}
 
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-100 text-blue-700">
-          <UserRound size={21} />
-        </div>
-
-        <div className="min-w-0">
-
-          <h3 className="break-words text-lg font-bold text-slate-900">
-            {student.name}
-          </h3>
-
-          {student.rollNo && (
-            <p className="mt-1 text-sm font-medium text-blue-600">
-              {student.rollNo}
-            </p>
-          )}
-
-        </div>
-
+      <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-blue-700">
+        <UserRound size={22} />
       </div>
 
-      <div className="mt-5 space-y-2 text-sm text-slate-600">
+      {/* Name */}
+
+      <h3 className="mt-3 break-words text-lg font-bold text-slate-900 sm:text-xl">
+        {student.name}
+      </h3>
+
+      {/* Roll number */}
+
+      {student.rollNo && (
+        <p className="mt-1 text-sm font-medium text-blue-600">
+          {student.rollNo}
+        </p>
+      )}
+
+      {/* Details */}
+
+      <div className="mt-5 space-y-2 text-sm leading-6 text-slate-600">
 
         {student.duration && (
           <p>
@@ -378,7 +422,7 @@ function ProjectStudents({
   );
 
   return (
-    <div className="grid gap-5">
+    <div className="mx-auto grid w-full max-w-4xl gap-5">
 
       {groups.map((group) => (
 
@@ -398,36 +442,32 @@ function ProjectStudents({
 
           {/* Project heading */}
 
-          <div className="flex items-start gap-4">
+          <div className="text-center">
 
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-violet-100 text-violet-700">
+            <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-xl bg-violet-100 text-violet-700">
               <FlaskConical size={21} />
             </div>
 
-            <div className="min-w-0">
+            <p className="mt-3 text-sm font-semibold text-violet-600">
+              {group.group}
+            </p>
 
-              <p className="text-sm font-semibold text-violet-600">
-                {group.group}
+            <h3 className="mt-1 break-words text-lg font-bold leading-7 text-slate-900 sm:text-xl">
+              {group.title}
+            </h3>
+
+            {group.duration && (
+              <p className="mt-2 text-sm text-slate-500">
+                {group.duration}
               </p>
-
-              <h3 className="mt-1 break-words text-lg font-bold leading-7 text-slate-900 sm:text-xl">
-                {group.title}
-              </h3>
-
-              {group.duration && (
-                <p className="mt-2 text-sm text-slate-500">
-                  {group.duration}
-                </p>
-              )}
-
-            </div>
+            )}
 
           </div>
 
 
           {/* Students */}
 
-          <div className="mt-5 grid gap-2 sm:grid-cols-2">
+          <div className="mx-auto mt-5 grid max-w-2xl gap-2 sm:grid-cols-2">
 
             {group.students.map((student) => (
 
@@ -493,14 +533,19 @@ function EmptyState({
   return (
     <div
       className="
+        mx-auto
+        w-full
+        max-w-2xl
         rounded-3xl
         border
         border-dashed
         border-slate-300
         bg-slate-50
-        px-6
-        py-12
+        px-5
+        py-10
         text-center
+        sm:px-6
+        sm:py-12
       "
     >
 
@@ -511,7 +556,7 @@ function EmptyState({
         {category} students
       </h3>
 
-      <p className="mt-2 text-sm text-slate-500">
+      <p className="mt-2 text-sm leading-6 text-slate-500">
         No student records are currently listed in this category.
       </p>
 
