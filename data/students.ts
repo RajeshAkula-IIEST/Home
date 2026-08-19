@@ -54,7 +54,33 @@ export const students: Student[] = [
   /* =========================================================
      B.Tech
   ========================================================= */
+  {
+  category: "B.Tech",
+  status: "current",
+  name: "Divyanshi Gupta",
+  rollNo: "2023MEB094",
+},
 
+{
+  category: "B.Tech",
+  status: "current",
+  name: "Shivang Tiwari",
+  rollNo: "2023MEB095",
+},
+
+{
+  category: "B.Tech",
+  status: "current",
+  name: "Pranay Dey",
+  rollNo: "2023MEB098",
+},
+
+{
+  category: "B.Tech",
+  status: "current",
+  name: "Devarakonda Abhishek Kumar",
+  rollNo: "2023MEB025",
+},
   {
     category: "B.Tech",
     status: "past",
