@@ -59,6 +59,12 @@ export const students: Student[] = [
   status: "current",
   name: "Divyanshi Gupta",
   rollNo: "2023MEB094",
+  duration: "2026–2027",
+
+    group: "B.Tech Project Group",
+
+    projectTitle:
+      "Tentative: Design of rover for safe mining",
 },
 
 {
@@ -66,6 +72,12 @@ export const students: Student[] = [
   status: "current",
   name: "Shivang Tiwari",
   rollNo: "2023MEB095",
+  duration: "2026–2027",
+
+    group: "B.Tech Project Group",
+
+    projectTitle:
+      "Tentative: Design of rover for safe mining",
 },
 
 {
@@ -73,6 +85,12 @@ export const students: Student[] = [
   status: "current",
   name: "Pranay Dey",
   rollNo: "2023MEB098",
+  duration: "2026–2027",
+
+    group: "B.Tech Project Group",
+
+    projectTitle:
+      "Tentative: Design of rover for safe mining",
 },
 
 {
@@ -80,6 +98,12 @@ export const students: Student[] = [
   status: "current",
   name: "Devarakonda Abhishek Kumar",
   rollNo: "2023MEB025",
+  duration: "2026–2027",
+
+    group: "B.Tech Project Group",
+
+    projectTitle:
+      "Tentative: Design of rover for safe mining",
 },
   {
     category: "B.Tech",
