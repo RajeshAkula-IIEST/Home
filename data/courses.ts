@@ -37,7 +37,30 @@ export const courses: Course[] = [
     courseContent:
       "/coursecontents/ME4127.pdf",
   },
+  {
+    code: "ME5147N",
 
+    title: "Fundamentals of AI & ML",
+
+    semester: "Odd",
+
+    credits: 3,
+
+    students: 8,
+
+    teachingHours: 12,
+
+    current: true,
+
+    description:
+      "This course introduces fundamentals of Artificial Intelligence and Machine Learning concepts. Students learn various search methods, First order logic, and uncertainty concepts.",
+
+    studentPortal:
+      "https://me4127-2026.github.io/me5147-login",
+
+    courseContent:
+      "/coursecontents/ME5147.pdf",
+  },
   {
     code: "ME4261",
 
